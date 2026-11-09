@@ -1,0 +1,13 @@
+RewriteEngine On
+
+# 1. Empêche l'affichage de la liste des fichiers si le dossier est vide
+Options -Indexes
+
+RewriteBase /public/
+
+# 2. Si le fichier ou le dossier demandé existe physiquement, on le charge directement
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+
+# 3. Sinon, on envoie discrètement la requête à l'index.php
+RewriteRule ^(.*)$ index.php [QSA,L]
