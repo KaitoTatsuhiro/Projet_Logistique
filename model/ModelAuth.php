@@ -269,7 +269,7 @@ class ModelAuth extends Model{
         $request->execute();
         return $request->fetch(PDO::FETCH_ASSOC);
     }
-    private function addCity($newCountryID){
+    private function addCity(int $newCountryID){
         try{
             $request = $this->getPdo()->prepare('INSERT INTO city(id_country, zip_code_city, name_city) VALUES(?, ?, ?)');
             $request->bindParam(1,$newCountryID,PDO::PARAM_INT);
