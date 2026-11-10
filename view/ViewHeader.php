@@ -44,6 +44,9 @@ class ViewHeader extends View{
                     echo '<a href="/">Accueil</a> ';
                     $connect="";
                     if(isset($_SESSION['id'])){
+                        if($_SESSION['role'] == 4){
+                            $connect .= '<a href="/company">Entreprise</a> ';
+                        }
                         $connect .= '<a href="/account">Profil</a> ';
                         $connect .= '<a href="/logout">Se Déconnecter</a> ';
                     }else{

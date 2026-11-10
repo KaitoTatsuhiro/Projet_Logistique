@@ -8,9 +8,11 @@ require_once '../controller/Controller.php';
 require_once '../controller/ControllerAuth.php';
 require_once '../controller/ControllerHome.php';
 require_once '../controller/ControllerAccount.php';
+require_once '../controller/ControllerCompany.php';
 
 require_once '../model/Model.php';
 require_once '../model/ModelAuth.php';
+require_once '../model/ModelCompany.php';
 
 require_once '../view/View.php';
 require_once '../view/ViewHeader.php';
@@ -18,6 +20,7 @@ require_once '../view/ViewFooter.php';
 require_once '../view/ViewAuth.php';
 require_once '../view/ViewHome.php';
 require_once '../view/ViewAccount.php';
+require_once '../view/ViewCompany.php';
 
 
 $url = $_SERVER['REQUEST_URI'];
@@ -40,7 +43,7 @@ switch($path){
         $viewFooter = new ViewFooter();
         $viewAuth = new ViewAuth();
 
-        //Créeation du controller
+        //Création du controller
         $controller = new ControllerAuth($viewHeader, $viewFooter, $viewAuth, $modelUser);
 
         //Lancer le rendu de la page
@@ -54,8 +57,21 @@ switch($path){
         $viewFooter = new ViewFooter();
         $viewAccount = new ViewAccount();
 
-        //Créeation du controller
+        //Création du controller
         $controller = new ControllerAccount($viewHeader, $viewFooter, $viewAccount, $modelUser);
+
+        //Lancer le rendu de la page
+        $controller->render();
+        break;
+    case "/company":
+        $modelCompany = new ModelCompany(connect());
+        //Création des View
+        $viewHeader = new ViewHeader();
+        $viewFooter = new ViewFooter();
+        $viewCompany = new ViewCompany();
+
+        //Création du controller
+        $controller = new ControllerCompany($viewHeader, $viewFooter, $viewCompany, $modelCompany);
 
         //Lancer le rendu de la page
         $controller->render();
